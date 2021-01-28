@@ -4,3 +4,14 @@ body {
 }
 
 
+.loginpage {
+    margin: auto;
+    display: block;
+    width: 30%;
+}
+    
+.registerpage {
+    margin: auto;
+    display: block;
+    width: 30%;
+}
