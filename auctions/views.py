@@ -3,12 +3,17 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.http import Http404
 
-from .models import User
+from .models import User, Listing, Comment
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    listings = Listing.objects.all()
+
+    return render(request, "auctions/index.html", {
+        "listings": listings
+    })
 
 
 def login_view(request):
@@ -65,3 +70,7 @@ def register(request):
 
 def listing(request):
     return render(request, "auctions/listing.html")
+
+
+def detail_listing(request):
+    pass

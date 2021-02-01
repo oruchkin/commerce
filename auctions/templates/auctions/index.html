@@ -3,5 +3,15 @@
 {% block body %}
     <h2>Active Listings</h2>
 
-    TODO
+    {% if listings %}
+
+
+    {% for a in listings %}
+        <a href="{% url 'listing' a.id %}">{{ a.title }}</a><br><br><br>
+    {% endfor %}
+
+    {% else %}
+    no listings
+    {% endif %}
+
 {% endblock %}
