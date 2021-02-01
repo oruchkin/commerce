@@ -68,9 +68,11 @@ def register(request):
         return render(request, "auctions/register.html")
 
 
-def listing(request):
+def listing(request, listing_id):
+    try:
+        L = Listing.objects.get(id=listing_id)
+    except:
+        raise Http404("no such listing")
     return render(request, "auctions/listing.html")
 
 
-def detail_listing(request):
-    pass
