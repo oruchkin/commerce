@@ -68,11 +68,14 @@ def register(request):
         return render(request, "auctions/register.html")
 
 
-def listing(request, listing_id):
+def listing(request, listing_title):
     try:
-        L = Listing.objects.get(id=listing_id)
+        L = Listing.objects.get(title=listing_title)
     except:
         raise Http404("no such listing")
-    return render(request, "auctions/listing.html")
+    return render(request, "auctions/listing.html",{
+        "title": L,
+        
+    })
 
 
