@@ -15,3 +15,8 @@ body {
     display: block;
     width: 30%;
 }
+
+.container_dlya_listing {
+    display: flex;
+    justify-content: space-around;
+}
