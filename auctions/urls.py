@@ -10,4 +10,5 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("listing", views.listing, name="listing"),
     path('<str:listing_title>/', views.listing, name="listing"),
+    path('<str:listing_title>/make_comment/', views.make_comment, name="make_comment"),
 ]

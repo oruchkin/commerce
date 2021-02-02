@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class User(AbstractUser):
     pass
-
+#make association manyto many to every listing, and comment?
 
 class Listing(models.Model):
     title = models.CharField(max_length=500)
@@ -14,7 +14,7 @@ class Listing(models.Model):
     price = models.DecimalField(max_digits=40, decimal_places=10,help_text="text")
     bid = models.DecimalField(max_digits=40, decimal_places=10, help_text="text")
     category = models.CharField(max_length=500)
-    pub_date = models.DateTimeField()
+    pub_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title

@@ -79,3 +79,11 @@ def listing(request, listing_title):
     })
 
 
+def make_comment(request, listing_title):
+    try:
+        L = Listing.objects.get(title=listing_title)
+    except:
+        raise Http404("no such listing")
+    
+    L.comment_set.create(comment_text=request.POST['text'])
+    

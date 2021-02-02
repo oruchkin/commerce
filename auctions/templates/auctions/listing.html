@@ -39,4 +39,12 @@ CLOSE BID if author
 <br>
 Comments:
 
+<form action="{% url 'make_comment' title.id %}" method="POST">
+    {% csrf_token %}
+    <textarea name="comment_text", required placeholder="text comment here" cols="30", rows="10"></textarea><br>
+    <button type="submit">оставить комментарий</button>
+
+</form>
+
+
 {% endblock %}
