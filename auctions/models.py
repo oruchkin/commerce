@@ -23,8 +23,12 @@ class Comment(models.Model):
     listing_id = models.ForeignKey(Listing, on_delete= models.CASCADE)
     author_name = models.ForeignKey(User, on_delete=models.CASCADE)
     comment_text = models.CharField(max_length=500)
+    pub_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.author_name.username
 
 
 class Bid(models.Model):
     pass
+

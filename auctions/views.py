@@ -1,9 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import Http404
+from .forms import CommentForm
+
 
 from .models import User, Listing, Comment
 
@@ -79,7 +81,7 @@ def listing(request, listing_title):
     })
 
 
-def make_comment(request, listing_title):
+def make_comment1(request, listing_title):
     try:
         L = Listing.objects.get(title=listing_title)
     except:
@@ -87,3 +89,20 @@ def make_comment(request, listing_title):
     
     L.comment_set.create(comment_text=request.POST['text'])
     
+
+def make_comment(request, listing_title):
+
+  if request.method == 'POST':
+    cf = CommentForm(request.POST or None)
+    if cf.is_valid():
+      comment_text = request.POST.get('comment_text')
+      comment = Comment.objects.create(listing_id=listing_id, author_name=author_name.user, comment_text=comment_text)
+      comment.save()
+      return redirect(Comment.get_absolute_url())
+    else:
+      cf = CommentForm()
+
+    context = {
+        'comment_form': cf,
+    }
+    return render(request, 'socio / post_detail.html', context)
